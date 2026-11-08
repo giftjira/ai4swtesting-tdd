@@ -13,3 +13,14 @@ test('timesheets that are added can be retrieved as a list', () => {
 	timesheet.submitTimesheet('Project 3', 8);
 	expect(timesheet.getTimesheets()).toHaveLength(3);
 });
+
+test('total hours worked can be calculated from timesheets for one project', () => {
+	const timesheet = new Timesheet();
+	timesheet.submitTimesheet('Project 1', 8);
+	timesheet.submitTimesheet('Project 1', 8);
+	timesheet.submitTimesheet('Project 1', 8);
+
+	const totalHours = timesheet.getTotalTimesheetHours('Project 1');
+
+	expect(totalHours).toBe(24);
+});
